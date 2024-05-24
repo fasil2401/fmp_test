@@ -3,22 +3,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class TextFieldWidget extends StatelessWidget {
-  const TextFieldWidget({
-    super.key,
-    required this.controller,
-    this.placeHolder,
-    this.icon,
-    this.type = TextInputType.text
-  });
+  const TextFieldWidget(
+      {super.key,
+      required this.controller,
+      this.placeHolder,
+      this.icon,
+      this.isObscure = false,
+      this.type = TextInputType.text});
 
   final TextEditingController controller;
   final String? placeHolder;
   final String? icon;
   final TextInputType type;
+  final bool isObscure;
 
   @override
   Widget build(BuildContext context) {
     return CupertinoTextField(
+      obscureText: isObscure,
       decoration: BoxDecoration(
         border: Border.all(color: CupertinoColors.placeholderText),
         borderRadius: BorderRadius.circular(10),

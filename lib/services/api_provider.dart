@@ -23,14 +23,14 @@ class ApiServices {
       var response;
       switch (method) {
         case apiMethod.get:
-          print('https://asapapi.srvinfotech.com/$url');
           response = await client.get(
               Uri.parse(
                 '${AppConstants.getbaseUrl()}$url',
               ),
               headers: accessToken != null
                   ? {
-                      'x-access-token': accessToken,
+                      'Accept': 'application/json',
+                      'Authorization': 'Bearer $accessToken',
                     }
                   : {});
 
@@ -42,7 +42,7 @@ class ApiServices {
                   body: json.encode(data),
                   headers: accessToken != null
                       ? {
-                          'x-access-token': accessToken,
+                          'Authorization': 'Bearer $accessToken',
                           'Content-Type': 'application/json',
                           'Accept': 'application/json',
                         }

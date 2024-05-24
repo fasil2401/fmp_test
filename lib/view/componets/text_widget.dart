@@ -16,19 +16,10 @@ class TextWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AutoSizeText(
+    return Text(
       text,
-      maxFontSize: isMain
-          ? 28
-          : isSubHead
-              ? 24
-              : 20,
-      minFontSize: isMain
-          ? 24
-          : isSubHead
-              ? 20
-              : 18,
-      style: style,
+      
+      style: style.copyWith(fontSize:isMain? 18:isSubHead? 16:14),
     );
   }
 }

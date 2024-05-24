@@ -1,3 +1,4 @@
+import 'package:fmp_test/services/preferences/shared_preference.dart';
 import 'package:fmp_test/utils/routes.dart';
 import 'package:get/get.dart';
 
@@ -9,8 +10,15 @@ class SplashScreenController extends GetxController {
   }
 
   checkoutSplash() async {
+    bool isLogedIn = AppPreferences.getLogin() ?? false;
+    
     await Future.delayed(Duration(seconds: 3), () async {
-      Get.toNamed(RouteManager.login);
+      if(isLogedIn){
+ Get.offNamed(RouteManager.home);
+      }else{
+        Get.offNamed(RouteManager.login);
+      }
+      
     });
   }
 }

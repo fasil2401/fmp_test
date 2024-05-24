@@ -2,34 +2,50 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:fmp_test/services/api_provider.dart';
-import 'package:fmp_test/services/preferences/shared_preference.dart';
 import 'package:get/get.dart';
 
-class LoginController extends GetxController {
+class RegisterController extends GetxController {
   var emailController = TextEditingController().obs;
   var passwordController = TextEditingController().obs;
-
+  var nameController = TextEditingController().obs;
+  var rePasswordController = TextEditingController().obs;
   var isLoading = false.obs;
-  generateLoginParams() {
+
+  generateRegisterParams() {
+    String name = nameController.value.text;
     String email = emailController.value.text;
     String password = passwordController.value.text;
-    return {"email": email, "password": password};
+    String passwordConfirmation = rePasswordController.value.text;
+    return {
+      "name": name,
+      "email": email,
+      "password": password,
+      "password_confirmation": passwordConfirmation
+    };
   }
 
   clearData() {
+    nameController.value.clear();
     emailController.value.clear();
     passwordController.value.clear();
+    rePasswordController.value.clear();
     update();
   }
 
   checkFields() {
+    String name = nameController.value.text;
     String email = emailController.value.text;
     String password = passwordController.value.text;
+    String passwordConfirmation = rePasswordController.value.text;
 
-    if (email.isEmpty || email.isEmail == false) {
+    if (name.isEmpty) {
+      return {"isSuccess": false, "Message": 'Please enter name'};
+    } else if (email.isEmpty || email.isEmail == false) {
       return {"isSuccess": false, "Message": 'Please enter proper email'};
-    } else if (password.isEmpty) {
+    } else if (password.isEmpty && passwordConfirmation.isEmpty) {
       return {"isSuccess": false, "Message": 'Please enter Password'};
+    } else if (password != passwordConfirmation) {
+      return {"isSuccess": false, "Message": 'Password does not match'};
     } else {
       return {
         "isSuccess": true,
@@ -37,17 +53,17 @@ class LoginController extends GetxController {
     }
   }
 
-  loginUser() async {
+  registerUser() async {
     isLoading.value = true;
     update();
     try {
       var feedback = await ApiServices.execute(
-          method: apiMethod.post, url: 'login', data: generateLoginParams());
+          method: apiMethod.post,
+          url: 'register',
+          data: generateRegisterParams());
       log(feedback.toString());
       if (feedback != null) {
         if (feedback['status'] != null && feedback['status'] == true) {
-          AppPreferences.setApiKey(feedback['token']);
-          AppPreferences.setLogin(true);
           clearData();
           return {"isSuccess": true, "Message": feedback['message']};
         } else {
