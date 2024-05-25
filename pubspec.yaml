@@ -41,6 +41,8 @@ dependencies:
   auto_size_text: ^3.0.0
   flutter_svg: ^2.0.10+1
   easy_rich_text: ^2.1.0
+  getwidget: ^4.0.0
+  cached_network_image: ^3.3.1
 
 dev_dependencies:
   flutter_test:

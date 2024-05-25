@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:fmp_test/controller/login_controller.dart';
 import 'package:fmp_test/services/snackbar_servises.dart';
 import 'package:fmp_test/utils/asset_paths.dart';
@@ -69,7 +67,7 @@ class LoginScreen extends StatelessWidget {
                         controller: _.emailController.value,
                         placeHolder: 'Email or Phone Number',
                       ),
-                      _buildSPacer(),
+                      // _buildSPacer(),
                       Align(
                         alignment: Alignment.centerRight,
                         child: TextWidget(

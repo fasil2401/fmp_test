@@ -1,5 +1,4 @@
 import 'package:easy_rich_text/easy_rich_text.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:fmp_test/controller/register_controller.dart';
@@ -143,33 +142,33 @@ class RegisterScreen extends StatelessWidget {
     );
   }
 
-  Container _buildLoginOption(
-    Size size, {
-    required String text,
-    required String icon,
-  }) {
-    return Container(
-      width: size.width,
-      decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: AppColors.lightGrey)),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 12),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(icon),
-            TextWidget(
-              text: text,
-              isMain: false,
-              isSubHead: true,
-              style:
-                  AppTextStyles.greyHeadNormal.copyWith(color: AppColors.black),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+  // Container _buildLoginOption(
+  //   Size size, {
+  //   required String text,
+  //   required String icon,
+  // }) {
+  //   return Container(
+  //     width: size.width,
+  //     decoration: BoxDecoration(
+  //         color: Colors.white,
+  //         borderRadius: BorderRadius.circular(10),
+  //         border: Border.all(color: AppColors.lightGrey)),
+  //     child: Padding(
+  //       padding: const EdgeInsets.symmetric(vertical: 12),
+  //       child: Row(
+  //         mainAxisAlignment: MainAxisAlignment.center,
+  //         children: [
+  //           Image.asset(icon),
+  //           TextWidget(
+  //             text: text,
+  //             isMain: false,
+  //             isSubHead: true,
+  //             style:
+  //                 AppTextStyles.greyHeadNormal.copyWith(color: AppColors.black),
+  //           ),
+  //         ],
+  //       ),
+  //     ),
+  //   );
+  // }
 }
