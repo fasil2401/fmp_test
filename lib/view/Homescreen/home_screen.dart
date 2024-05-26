@@ -19,7 +19,8 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
-      drawer: Drawer(),
+      backgroundColor: Colors.white,
+      // drawer: Drawer(),
       body: SafeArea(
         child: Container(
             padding: EdgeInsets.all(10),
@@ -47,11 +48,7 @@ class HomeScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          InkWell(
-                              onTap: () {
-                                Scaffold.of(context).openDrawer();
-                              },
-                              child: _buildIcon('assets/icons/Home-3.svg')),
+                          _buildIcon('assets/icons/Home-3.svg'),
                           SizedBox(
                             width: 12,
                           ),
@@ -159,7 +156,7 @@ class HomeScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                _buildSPacer(isBig: true),
+                _buildSPacer(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -173,7 +170,7 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
                 GFCarousel(
-                  hasPagination: true,
+                  // hasPagination: true,
                   aspectRatio: 15 / 7,
                   activeIndicator: AppColors.primary,
                   passiveIndicator: AppColors.secondary,
@@ -181,69 +178,67 @@ class HomeScreen extends StatelessWidget {
                     (url) {
                       return Container(
                         margin: EdgeInsets.all(8.0),
-                        child: Stack(
-                          children: [
-                            ClipRRect(
-                                // clipBehavior: Clip.none,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(5.0)),
-                                child: Image.asset(
-                                  'assets/images/dummy3.png',
-                                  fit: BoxFit.fill,
-                                  filterQuality: FilterQuality.low,
-                                  colorBlendMode: BlendMode.overlay,
-                                  color: AppColors.black.withOpacity(0.6),
-                                )
-                                // Image.network(url,
-                                //     fit: BoxFit.cover, width: size.width),
-                                ),
-                            Positioned(
-                                top: 40,
-                                left: 10,
-                                child: Text(
-                                  'Get Special Offer',
-                                  style: TextStyle(
-                                      fontFamily: 'Popins',
-                                      fontSize: 14,
-                                      color: Colors.white),
-                                )),
-                            Positioned(
-                                top: 60,
-                                left: 10,
-                                child: Text(
-                                  'Up to on 40% services',
-                                  style: TextStyle(
-                                      fontFamily: 'Popins',
-                                      fontSize: 8,
-                                      color: Colors.white),
-                                )),
-                            Positioned(
-                                bottom: 40,
-                                left: 10,
-                                child: Text(
-                                  'All Services Available | T&C Applied',
-                                  style: TextStyle(
-                                      fontFamily: 'Popins',
-                                      fontSize: 8,
-                                      color: Colors.white),
-                                )),
-                            Positioned(
-                                top: 10,
-                                left: 10,
-                                child: _bannerTags(
-                                    text: 'Limited Time!',
-                                    color: AppColors.green)),
-                            Positioned(
-                                bottom: 40,
-                                right: 10,
-                                child: _bannerTags(text: 'Claim Now'))
-                          ],
+                        width: size.width,
+                        // height: size.width * 0.5,
+                        decoration: BoxDecoration(
+                          color: AppColors.black,
+                          image: DecorationImage(
+                            image: AssetImage(
+                              'assets/images/tileImage.png',
+                            ),
+                            fit: BoxFit.cover,
+                            filterQuality: FilterQuality.low,
+                          ),
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
                         ),
+                        child: Stack(children: [
+                          Positioned(
+                              top: 40,
+                              left: 10,
+                              child: Text(
+                                'Get Special Offer',
+                                style: TextStyle(
+                                    fontFamily: 'Popins',
+                                    fontSize: 14,
+                                    color: Colors.white),
+                              )),
+                          Positioned(
+                              top: 60,
+                              left: 10,
+                              child: Text(
+                                'Up to on 40% services',
+                                style: TextStyle(
+                                    fontFamily: 'Popins',
+                                    fontSize: 8,
+                                    color: Colors.white),
+                              )),
+                          Positioned(
+                              bottom: 10,
+                              left: 10,
+                              child: Text(
+                                'All Services Available | T&C Applied',
+                                style: TextStyle(
+                                    fontFamily: 'Popins',
+                                    fontSize: 8,
+                                    color: Colors.white),
+                              )),
+                          Positioned(
+                              top: 10,
+                              left: 10,
+                              child: _bannerTags(
+                                  text: 'Limited Time!',
+                                  color: AppColors.green)),
+                          Positioned(
+                              bottom: 10,
+                              right: 10,
+                              child: _bannerTags(text: 'Claim Now'))
+                        ]),
                       );
                     },
                   ).toList(),
                   onPageChanged: (index) {},
                 ),
+                _buildSPacer(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -306,103 +301,115 @@ class HomeScreen extends StatelessWidget {
                           color: Colors.white,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10)),
-                          child: Row(
-                            children: [
-                              Stack(
-                                children: [
-                                  Container(
+                          child: IntrinsicHeight(
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                Container(
+                                    width: size.width * 0.32,
                                     decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                            image: AssetImage(
-                                                'assets/images/dummy2.png'),
-                                            fit: BoxFit.fill),
-                                        borderRadius: BorderRadius.only(
-                                            bottomLeft: Radius.circular(10),
-                                            topLeft: Radius.circular(10))),
-                                    width: size.width * 0.31,
-                                    height: size.width * 0.32,
-                                  ),
-                                  Positioned(
-                                      top: 6,
-                                      left: 6,
-                                      child:
-                                          _bannerTags(text: '1BR, Apartment'))
-                                ],
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Expanded(
-                                child: Column(
-                                  children: [
-                                    TextWidget(
-                                        style: AppTextStyles.greyHeadNormal,
-                                        text:
-                                            'Stunning Studio Apartment in Dubai Arch (JLT)'),
-                                    SizedBox(
-                                      height: 6,
+                                      color: AppColors.black,
+                                      image: DecorationImage(
+                                        image: AssetImage(
+                                          'assets/images/tileImage.png',
+                                        ),
+                                        fit: BoxFit.cover,
+                                        filterQuality: FilterQuality.low,
+                                      ),
+                                      borderRadius: BorderRadius.only(
+                                          bottomLeft: Radius.circular(10),
+                                          topLeft: Radius.circular(10)),
                                     ),
-                                    Row(
+                                    child: Stack(
                                       children: [
-                                        Expanded(
-                                          child: _buildTileIconSets(
-                                              icon: 'assets/icons/money.svg',
-                                              text: 'د.إ13,000 /Night'),
-                                        ),
-                                        Expanded(
-                                          child: _buildTileIconSets(
-                                              icon: 'assets/icons/location.svg',
-                                              text: 'JLT, Dubai'),
-                                        ),
+                                        Positioned(
+                                            top: 6,
+                                            left: 6,
+                                            child: _bannerTags(
+                                                text: '1BR, Apartment')),
                                       ],
-                                    ),
-                                    SizedBox(
-                                      height: 6,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Expanded(
-                                          child: _buildTileIconSets(
-                                              icon: 'assets/icons/Bedrooms.svg',
-                                              text: '1 Beds'),
-                                        ),
-                                        Expanded(
-                                          child: _buildTileIconSets(
-                                              icon:
-                                                  'assets/icons/Bathrooms.svg',
-                                              text: '1 Baths'),
-                                        ),
-                                        Expanded(
-                                          child: _buildTileIconSets(
-                                              icon: 'assets/icons/Map.svg',
-                                              text: '289 Sqft'),
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 6,
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        SvgPicture.asset(
-                                          'assets/icons/expand.svg',
-                                          height: 25,
-                                        ),
-                                        SvgPicture.asset(
-                                          'assets/icons/add.svg',
-                                          height: 25,
-                                        )
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 5,
-                                    )
-                                  ],
+                                    )),
+                                SizedBox(
+                                  width: 10,
                                 ),
-                              )
-                            ],
+                                Expanded(
+                                  child: Column(
+                                    children: [
+                                      TextWidget(
+                                          style: AppTextStyles.greyHeadNormal,
+                                          text:
+                                              'Stunning Studio Apartment in Dubai Arch (JLT)'),
+                                      SizedBox(
+                                        height: 6,
+                                      ),
+                                      Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Expanded(
+                                            child: _buildTileIconSets(
+                                                icon: 'assets/icons/money.svg',
+                                                text: 'د.إ13,000 /Night'),
+                                          ),
+                                          Expanded(
+                                            child: _buildTileIconSets(
+                                                icon:
+                                                    'assets/icons/location.svg',
+                                                text: 'JLT, Dubai'),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 6,
+                                      ),
+                                      Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Expanded(
+                                            child: _buildTileIconSets(
+                                                icon:
+                                                    'assets/icons/Bedrooms.svg',
+                                                text: '1 Beds'),
+                                          ),
+                                          Expanded(
+                                            child: _buildTileIconSets(
+                                                icon:
+                                                    'assets/icons/Bathrooms.svg',
+                                                text: '1 Baths'),
+                                          ),
+                                          Expanded(
+                                            child: _buildTileIconSets(
+                                                icon: 'assets/icons/Map.svg',
+                                                text: '289 Sqft'),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 6,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          SvgPicture.asset(
+                                            'assets/icons/expand.svg',
+                                            height: 25,
+                                          ),
+                                          SvgPicture.asset(
+                                            'assets/icons/add.svg',
+                                            height: 25,
+                                          )
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 5,
+                                      )
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       );
@@ -419,7 +426,7 @@ class HomeScreen extends StatelessWidget {
         width: size.width,
         height: 70,
         decoration: BoxDecoration(
-            color: Colors.grey.shade400.withOpacity(0.1),
+            color: Colors.white,
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(10), topRight: Radius.circular(10))),
         child: Row(

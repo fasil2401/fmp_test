@@ -19,7 +19,7 @@ class AppIcons {
   static const String feature7 = '${base}/price-12.svg';
   static const String feature8 = '${base}/price-13.svg';
   static const String feature9 = '${base}/price-14.svg';
-  static const String bookNow = '${base}/Book Now-1.svg';
+  static const String bookNow = '${base}/Book Now.svg';
 }
 
 class AppImages {
@@ -28,5 +28,4 @@ class AppImages {
   static const String home_back = '${base}background_home.png';
   static const String tittle_image = '${base}tittle_image.png';
   static const String detail_image = '${base}image.png';
-
 }

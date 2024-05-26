@@ -12,6 +12,7 @@ class DetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
           child: Stack(
         children: [
@@ -34,7 +35,8 @@ class DetailScreen extends StatelessWidget {
                         height: size.height / 4,
                         decoration: BoxDecoration(
                             image: DecorationImage(
-                                image: AssetImage('assets/images/dummy2.png'),
+                                image:
+                                    AssetImage('assets/images/tileImage.png'),
                                 fit: BoxFit.fill),
                             borderRadius: BorderRadius.circular(8)),
                       ),
@@ -46,6 +48,7 @@ class DetailScreen extends StatelessWidget {
                         padding: EdgeInsets.symmetric(horizontal: 10),
                         height: 80,
                         decoration: BoxDecoration(
+                            color: Colors.white,
                             border: Border.all(
                                 style: BorderStyle.solid, width: 0.5),
                             borderRadius: BorderRadius.circular(10)),
@@ -69,15 +72,16 @@ class DetailScreen extends StatelessWidget {
                       ),
                       TextWidget(
                           style: AppTextStyles.blackHead,
-                          isMain: true,
-                          isSubHead: false,
+                          isMain: false,
+                          isSubHead: true,
                           text: "About This Listing"),
                       SizedBox(
                         height: 10,
                       ),
                       Text(
                         "Sejourne Holiday Homes is happy to offer you a brand new Elegant Studio at partially overlooking the lake.JLT is a vibrant mixed-use Free Zone. High-rise towers look out over manmade lakes, while a world of cafés, restaurants, retail and lifestyle awaits at ground and podium level. Perfect for your next leisure or business trips or simply if you are a resident in need of a sta",
-                        style: AppTextStyles.greyHeadNormal,
+                        style:
+                            AppTextStyles.greyHeadNormal.copyWith(fontSize: 12),
                         overflow: TextOverflow.ellipsis,
                         maxLines: 5,
                       ),
@@ -86,8 +90,8 @@ class DetailScreen extends StatelessWidget {
                       ),
                       TextWidget(
                           style: AppTextStyles.blackHead,
-                          isMain: true,
-                          isSubHead: false,
+                          isMain: false,
+                          isSubHead: true,
                           text: "Details"),
                       SizedBox(
                         height: 10,
@@ -123,8 +127,8 @@ class DetailScreen extends StatelessWidget {
                       ),
                       TextWidget(
                           style: AppTextStyles.blackHead,
-                          isMain: true,
-                          isSubHead: false,
+                          isMain: false,
+                          isSubHead: true,
                           text: "Features"),
                       SizedBox(
                         height: 10,
@@ -183,7 +187,7 @@ class DetailScreen extends StatelessWidget {
         width: size.width,
         height: 70,
         decoration: BoxDecoration(
-            color: Colors.grey.shade400.withOpacity(0.1),
+            color: Colors.white,
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(10), topRight: Radius.circular(10))),
         child: Row(
@@ -219,7 +223,6 @@ class DetailScreen extends StatelessWidget {
                     width: 25,
                     child: SvgPicture.asset(
                       AppIcons.bookNow,
-                      // color: Colors.white,
                     ),
                   ),
                   SizedBox(
@@ -251,7 +254,7 @@ class DetailScreen extends StatelessWidget {
     return Text(
       text,
       style: TextStyle(
-          fontSize: isLarge ? 12 : 10,
+          fontSize: isLarge ? 10 : 8,
           fontFamily: 'Popins',
           color: isGrey ? AppColors.grey : Colors.white,
           fontWeight: isLarge ? FontWeight.w600 : FontWeight.w400),
@@ -275,7 +278,7 @@ class DetailScreen extends StatelessWidget {
           height: 10,
         ),
         _buildText(firstText, isLarge: false, isGrey: true),
-        _buildText(secondText, isLarge: false, isGrey: false)
+        _buildText(secondText, isLarge: false, isGrey: true)
       ],
     );
   }
@@ -311,18 +314,21 @@ class DetailScreen extends StatelessWidget {
         ),
         if (headText != null)
           Flexible(
-              child: TextWidget(
-                  style: AppTextStyles.greyHeadBold, text: headText)),
+              child: Text(
+            headText,
+            style: AppTextStyles.greyHeadBold.copyWith(fontSize: 13),
+          )),
         if (headText != null)
           SizedBox(
             width: 10,
           ),
         if (value != null)
           Flexible(
-              child: TextWidget(
-                  style: TextStyle(
-                      fontSize: 4, fontFamily: 'Popins', color: AppColors.grey),
-                  text: value))
+              child: Text(
+            value,
+            style: TextStyle(
+                fontSize: 11, fontFamily: 'Popins', color: AppColors.grey),
+          ))
       ],
     );
   }
@@ -332,7 +338,7 @@ class DetailScreen extends StatelessWidget {
       padding: EdgeInsets.only(left: 10),
       height: 60,
       decoration: BoxDecoration(
-          color: Colors.grey.shade300, borderRadius: BorderRadius.circular(13)),
+          color: Colors.grey.shade100, borderRadius: BorderRadius.circular(13)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.center,
